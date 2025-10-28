@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 
 
+// /api/v1/....
 app.use("/api", apiRouter);
 
 

@@ -1,4 +1,4 @@
-// notimplemented.error.js
+// notImplemented.error.js
 const BaseError = require("./base.error.js");
 const { StatusCodes } = require("http-status-codes");
 
