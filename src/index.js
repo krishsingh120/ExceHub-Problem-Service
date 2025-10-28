@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes/index");
+const BaseError = require("./errors/base.error.js");
+const errorHandler = require("./utils/errorHandler.js");
 const app = express();
 
 
@@ -12,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 
 
+// /api/v1/....
 app.use("/api", apiRouter);
 
 
@@ -19,7 +22,11 @@ app.use("/api", apiRouter);
 app.get('/ping', (req, res) => res.send("hello"));
 
 
+// last middleware if any error comes
+app.use(errorHandler);
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port http://localhost:${PORT}`);
+
 })
