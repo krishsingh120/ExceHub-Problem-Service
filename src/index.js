@@ -4,6 +4,7 @@ const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes/index");
 const BaseError = require("./errors/base.error.js");
 const errorHandler = require("./utils/errorHandler.js");
+const connectToDB = require("./config/db.config.js");
 const app = express();
 
 
@@ -26,7 +27,9 @@ app.get('/ping', (req, res) => res.send("hello"));
 app.use(errorHandler);
 
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Server is listening on port http://localhost:${PORT}`);
+    await connectToDB();
+    console.log("🚀 Successfully connected to DB");
 
 })
