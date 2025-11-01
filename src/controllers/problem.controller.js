@@ -24,7 +24,7 @@ async function addProblem(req, res, next) {
     }
 }
 
-function getProblem(req, res, next) {
+async function getProblem(req, res, next) {
     try {
         // nothing implemented
         throw new NotImplemented('AddProblem');
@@ -33,7 +33,21 @@ function getProblem(req, res, next) {
     }
 }
 
-function getProblems(req, res, next) {
+async function getProblems(req, res, next) {
+    try {
+        const allProblems = await problemService.getAllProblem();
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Successfully fetched all problems",
+            error: {},
+            data: allProblems,
+        })
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function deleteProblem(req, res, next) {
     try {
         // nothing implemented
         throw new NotImplemented('AddProblem');
@@ -42,16 +56,7 @@ function getProblems(req, res, next) {
     }
 }
 
-function deleteProblem(req, res, next) {
-    try {
-        // nothing implemented
-        throw new NotImplemented('AddProblem');
-    } catch (error) {
-        next(error);
-    }
-}
-
-function updateProblem(req, res, next) {
+async function updateProblem(req, res, next) {
     try {
         // nothing implemented
         throw new NotImplemented('AddProblem');

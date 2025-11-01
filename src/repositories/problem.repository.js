@@ -1,6 +1,7 @@
 const { Problem } = require("../models/index");
 
 class ProblemRepository {
+    // create problem
     async createProblem(problemData) {
         try {
             const problem = await Problem.create({
@@ -11,6 +12,18 @@ class ProblemRepository {
                 editorial: problemData.editorial
             })
             return problem;
+        } catch (error) {
+            console.log("Problem repository Error", error);
+            throw error;
+        }
+    }
+
+    // get all problems
+    async getAllProblem() {
+        try {
+            throw "error"
+            const allProblems = await Problem.find({}); // {} -> this is for filtration
+            return allProblems;
         } catch (error) {
             console.log("Problem repository Error", error);
             throw error;
