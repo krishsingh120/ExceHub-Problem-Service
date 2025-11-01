@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const { PORT } = require("./config/server.config");
 const apiRouter = require("./routes/index");
 const BaseError = require("./errors/base.error.js");
-const errorHandler = require("./utils/errorHandler.js");
+const { errorHandler } = require("./utils/index.js");
 const connectToDB = require("./config/db.config.js");
 const app = express();
 

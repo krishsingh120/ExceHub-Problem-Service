@@ -1,31 +1,30 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-
 const problemSchema = new Schema({
     title: {
         type: String,
-        require: [true, 'Title cannot be empty'],
+        required: [true, 'Title cannot be empty'],
     },
     description: {
         type: String,
-        require: [true, 'Description cannot be empty'],
+        required: [true, 'Description cannot be empty'],
     },
     difficulty: {
         type: String,
         enum: ['easy', 'medium', 'hard'],
-        require: [true, 'Difficulty cannot be empty'],
+        required: [true, 'Difficulty cannot be empty'],
         default: 'easy',
     },
     testCases: [
         {
             input: {
                 type: String,
-                require: true,
+                required: [true, 'Input cannot be empty'],
             },
             output: {
                 type: String,
-                require: true,
+                required: [true, 'Output cannot be empty'],
             },
             explanation: {
                 type: String,
@@ -35,7 +34,7 @@ const problemSchema = new Schema({
     editorial: {
         type: String,
     }
-})
+}, { timestamps: true });  // adds createdAt & updatedAt
 
 const Problem = mongoose.model('Problem', problemSchema);
 
