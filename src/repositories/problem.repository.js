@@ -35,11 +35,39 @@ class ProblemRepository {
         try {
             const problem = await Problem.findById(id);
             console.log(problem);
-            
+
             if (!problem) {
                 throw new NotFound("Problem", id);
             }
             return problem;
+        } catch (error) {
+            console.log("Problem repository Error", error);
+            throw error;
+        }
+    }
+
+
+    // update problem
+    async updateProblem(id) {
+        try {
+
+        } catch (error) {
+            console.log("Problem repository Error", error);
+            throw error;
+        }
+    }
+
+
+    // delete problem
+    async deleteProblem(id) {
+        try {
+            const deletedProblem = await Problem.findByIdAndDelete(id);
+
+            if (!deletedProblem) {
+                throw new NotFound("Problem", id);
+            }
+
+            return deletedProblem;
         } catch (error) {
             console.log("Problem repository Error", error);
             throw error;

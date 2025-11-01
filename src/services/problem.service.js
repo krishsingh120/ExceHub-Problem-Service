@@ -50,6 +50,36 @@ class ProblemService {
             throw error;
         }
     }
+
+    // update problem
+    async updateProblem(problemId) {
+        try {
+
+        } catch (error) {
+            console.log("Problem service Error", error);
+            throw error;
+        }
+    }
+
+
+    // delete problem
+    async deleteProblem(problemId) {
+        try {
+            // Validate ObjectId format
+            if (!mongoose.Types.ObjectId.isValid(problemId)) {
+                throw new BadRequest(`Problem id format: ${problemId}`, problemId);
+            }
+
+            const deletedProblem = await this.problemRepository.deleteProblem(problemId);
+            return deletedProblem;
+        } catch (error) {
+            console.log("Problem service Error", error);
+            throw error;
+        }
+    }
+
+
+
 }
 
 module.exports = ProblemService;
