@@ -54,8 +54,13 @@ async function getProblems(req, res, next) {
 
 async function deleteProblem(req, res, next) {
     try {
-        // nothing implemented
-        throw new NotImplemented('AddProblem');
+        const response = await problemService.deleteProblem(req.params.id);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Successfully delete a problem",
+            error: {},
+            data: response,
+        })
     } catch (error) {
         next(error);
     }
@@ -63,8 +68,13 @@ async function deleteProblem(req, res, next) {
 
 async function updateProblem(req, res, next) {
     try {
-        // nothing implemented
-        throw new NotImplemented('AddProblem');
+        const response = await problemService.updateProblem(req.body, req.params.id);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Successfully update a problem",
+            error: {},
+            data: response,
+        })
     } catch (error) {
         next(error);
     }

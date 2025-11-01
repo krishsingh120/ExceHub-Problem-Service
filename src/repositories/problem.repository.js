@@ -35,11 +35,48 @@ class ProblemRepository {
         try {
             const problem = await Problem.findById(id);
             console.log(problem);
-            
+
             if (!problem) {
                 throw new NotFound("Problem", id);
             }
             return problem;
+        } catch (error) {
+            console.log("Problem repository Error", error);
+            throw error;
+        }
+    }
+
+
+    // update problem
+    async updateProblem(data, id) {
+        try {
+            const updatedProblem = await Problem.findByIdAndUpdate(id, data, {
+                new: true,    // return the updated document
+                runValidators: true,   // run schema validation on update
+            })
+
+            if (!updatedProblem) {
+                throw new NotFound("Problem", { "data": data, "id": id });
+            }
+
+            return updatedProblem;
+        } catch (error) {
+            console.log("Problem repository Error", error);
+            throw error;
+        }
+    }
+
+
+    // delete problem
+    async deleteProblem(id) {
+        try {
+            const deletedProblem = await Problem.findByIdAndDelete(id);
+
+            if (!deletedProblem) {
+                throw new NotFound("Problem", id);
+            }
+
+            return deletedProblem;
         } catch (error) {
             console.log("Problem repository Error", error);
             throw error;
