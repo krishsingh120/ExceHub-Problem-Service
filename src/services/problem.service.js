@@ -1,5 +1,7 @@
+const mongoose = require("mongoose");
 // const { ProblemRepository, ProblemRepository } = require("../repositories/index");
 const sanitizeMarkdownContent = require("../utils/markdownSanitizer");
+const BadRequest = require("../errors/badrequest.error");
 
 
 class ProblemService {
@@ -22,11 +24,27 @@ class ProblemService {
         }
     }
 
-    // get all problem
+    // get all problems
     async getAllProblem() {
         try {
             const allProblems = await this.problemRepository.getAllProblem();
             return allProblems;
+        } catch (error) {
+            console.log("Problem service Error", error);
+            throw error;
+        }
+    }
+
+    // get problem 
+    async getProblem(problemId) {
+        try {
+            // Validate ObjectId format
+            if (!mongoose.Types.ObjectId.isValid(problemId)) {
+                throw new BadRequest(`Problem id format: ${problemId}`, problemId);
+            }
+
+            const problem = await this.problemRepository.getProblem(problemId);
+            return problem;
         } catch (error) {
             console.log("Problem service Error", error);
             throw error;

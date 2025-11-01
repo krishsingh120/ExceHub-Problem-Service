@@ -11,21 +11,21 @@ function sanitizeMarkdownContent(markdownContent) {
 
     // 1. convert markdown to html
     const convertedHtml = markdown.parse(markdownContent);
-    console.log("markdown data", convertedHtml);
+    // console.log("markdown data", convertedHtml);
 
 
 
     // 2. sanitized html
     const sanitizedHtml = sanitizeHtmlLibrary(convertedHtml, {
-        allowedTags: sanitizeHtmlLibrary.defaults.allowedTags
+        allowedTags: sanitizeHtmlLibrary.defaults.allowedTags.concat(['img'])
     });
-    console.log("sanitized data", sanitizedHtml);
+    // console.log("sanitized data", sanitizedHtml);
 
 
 
     // 3. Convert the sanitized html back to markdown
     const sanitizedMarkdown = turndownService.turndown(sanitizedHtml);
-    console.log("Sanitized markdown", sanitizedMarkdown);
+    // console.log("Sanitized markdown", sanitizedMarkdown);
 
 
 
