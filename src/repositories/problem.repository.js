@@ -48,9 +48,18 @@ class ProblemRepository {
 
 
     // update problem
-    async updateProblem(id) {
+    async updateProblem(data, id) {
         try {
+            const updatedProblem = await Problem.findByIdAndUpdate(id, data, {
+                new: true,    // return the updated document
+                runValidators: true,   // run schema validation on update
+            })
 
+            if (!updatedProblem) {
+                throw new NotFound("Problem", { "data": data, "id": id });
+            }
+
+            return updatedProblem;
         } catch (error) {
             console.log("Problem repository Error", error);
             throw error;

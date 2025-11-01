@@ -52,9 +52,18 @@ class ProblemService {
     }
 
     // update problem
-    async updateProblem(problemId) {
+    async updateProblem(problemData, problemId) {
         try {
+            // Validate ObjectId format
+            if (!mongoose.Types.ObjectId.isValid(problemId)) {
+                throw new BadRequest(`Problem id format: ${problemId}`, problemId);
+            }
 
+            // 1. sanitized the markdown for description
+            problemData.description = sanitizeMarkdownContent(problemData.description);
+
+            const updatedProblem = await this.problemRepository.updateProblem(problemData, problemId);
+            return updatedProblem;
         } catch (error) {
             console.log("Problem service Error", error);
             throw error;
@@ -77,9 +86,6 @@ class ProblemService {
             throw error;
         }
     }
-
-
-
 }
 
 module.exports = ProblemService;
