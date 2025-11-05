@@ -2,11 +2,13 @@ const NotImplemented = require("../errors/notImplemented.error");
 const { ProblemService } = require("../services/index");
 const { ProblemRepository } = require("../repositories/index");
 const { StatusCodes } = require("http-status-codes");
+const logger = require("../config/logger.config");
 
 const problemService = new ProblemService(new ProblemRepository());
 
 
 function pingController(req, res) {
+    logger.error("ping error log from ping controller")
     return res.json({ message: "ping controller is up" });
 }
 

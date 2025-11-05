@@ -1,10 +1,31 @@
 const winston = require("winston");
 require("winston-mongodb");
 const { LOG_DB_URL } = require("./server.config");
-const { stackTraceLimit } = require("../errors/base.error.js");
+const { logToCosmos } = require("../clientapis/cosmosClient");
+const { Writable } = require('stream');
 
 
 const allowedTransports = [];
+
+
+// With the help of stream anything you want to connect with winston.
+const customStream = new Writable({
+    write(chunk, encoding, callback) {
+        const message = chunk.toString();
+        console.log("Log intercepted in custom transport: ", message);
+        logToCosmos("error", message);
+        callback();
+    }
+})
+
+
+const customStreamTransport = new winston.transports.Stream({
+    stream: customStream,
+    level: 'error',
+});
+
+
+allowedTransports.push(customStreamTransport);
 
 
 // The below transport configuration enable logging on the console

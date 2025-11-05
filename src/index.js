@@ -21,7 +21,7 @@ app.use("/api", apiRouter);
 
 
 // Routes setup
-app.get('/ping', (req, res) => res.send("hello"));
+app.get('/ping', (req, res) => res.send("hello ping is here."));
 
 
 // last middleware if any error comes

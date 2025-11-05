@@ -1,0 +1,159 @@
+Pre-Requisities
+_________________
+
+1. hit apis get/put/post apis from postman
+2. create a variable in postman.
+
+(already covered in the project which is currently going on)
+
+c URL
+
+http://{{URL}}/api/v1/problems/ping
+
+curl --location 'http://{{URL}}/api/v1/problems/ping' \
+--header 'Cookies: Cookie_2=value' \
+--header 'TEST=value'
+
+1. Use variable as per the environment (env based variable)
+
+Developer
+----------
+
+> Local machine
+
+      http://localhost:3000/api/v1/problem
+
+> UAT/Preview (Replica of Prod)
+
+      http://{uat-url}/api/v1/problem
+
+> Production
+
+      http://{prod-url}/api/v1/problem
+
+> Hotfix
+
+2. Load/Performance Testing
+
+-> SWE - sole consumer -> single user
+-> 20 users -> parallel users to the api
+
+  Fixed -> const user send req at a particular time
+
+3. Testing the api using scripts
+ > unit testing
+
+   > Basic syntax for tests
+
+      // Test that the status code is 200.
+            pm.test("Status code is 200", function() {
+            pm.response.to.have.status(200);
+      })
+
+      // Test that the response is in JSON format.
+            pm.test("Content-type is application/json", function() {
+            pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');
+      });
+
+      pm.test("Response body is an array", function() {
+            let jsonData = pm.response.json();
+            pm.expect(jsonData).to.be.an('array');
+      })
+
+      pm.test("Response structure is valid", function() {
+            let jsonData = pm.response.json();
+
+            pm.expect(jsonData).to.be.an('object');
+            pm.expect(jsonData).to.have.all.keys('success', 'message', 'error', 'data' );
+
+            jsonData.data.forEach((problem) => {
+                  pm.expect(problem).to.have.all.keys('_id', 'title', 'description', 'difficulty', 'testCases', 'editorial', 'createdAt', 'updatedAt', '__v');
+            })
+      })
+
+
+4. Monitoring
+  > Monitor health means continuously checking the health and performance of the api. 
+
+
+
+
+
+## Topic to covered
+____________________
+
+1. Introduction to Azure
+2. Azure Cosmos DB (No SQL DB)
+3. Integrate Azure cosmos db to our project
+
+## Pre-Requisities
+--------------------
+  > Knowledge about logging and how to use winston.
+
+project -> Logging (winston) => store these logs in cosmos DB.
+
+1. how to integrate cosmos db to any project.
+2. how to store winston logs to cosmos db.
+
+Why cosmos DB?
+  - efficient search/querying
+
+Hosting platform
+  - Azure -> Microsoft
+  - AWS -> Amazon
+  - GCP -> Google
+
+
+Azure Cosmos DB
+----------------
+
+ > Huge amounts of data
+ > Documents based DB
+ > key value pairs
+
+Creating/Setup Cosmos DB on Azure
+__________________________________
+
+  Subscription (org)
+
+  team 1  (Resource grp 1)
+
+      Cosmos DB Account Name -> ExceHub
+         > db1
+         > db2
+         > db3
+
+
+  team 2
+
+  team 3
+
+
+MongoDB/SQL           CosmosDB
+    |                    |
+Databases             Databases
+Tables                Containers
+Row/Documents         Documents
+
+
+Client Class
+-------------
+
+   CosmosClient
+       > function addToCosmos()
+
+1. Adding cosmos Client
+
+      Basic CRUD
+         >  addToCosmos()
+         >  DeleteToCosmos()
+
+2. Connect winston logs
+
+
+
+# CosmosDB and MongoDB
+
+  > cosmosDB scalability globally.
+  > Data modeling.
+  > Transactionality
