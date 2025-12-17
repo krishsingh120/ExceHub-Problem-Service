@@ -270,15 +270,12 @@ npm start
 
 
 ## 👨‍💻 Author
-```md
+
 **Krish Singh**  
-Backend & Full-Stack Developer  
-Building scalable systems with clean architecture 🚀  
+Backend & Full-Stack Developer 🚀  
 
-- GitHub: [krishsingh120](https://github.com/krishsingh120)
-- LinkedIn: [Krish Singh](https://www.linkedin.com/in/krish-singh-9023b12a8/)
-
-```
+[GitHub](https://github.com/krishsingh120) • 
+[LinkedIn](https://www.linkedin.com/in/krish-singh-9023b12a8/)
 
 
 
