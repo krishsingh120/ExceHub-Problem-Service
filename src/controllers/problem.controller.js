@@ -8,7 +8,7 @@ const problemService = new ProblemService(new ProblemRepository());
 
 
 function pingController(req, res) {
-    logger.error("ping error log from ping controller")
+    // logger.log("ping error log from ping controller")
     return res.json({ message: "ping controller is up" });
 }
 
