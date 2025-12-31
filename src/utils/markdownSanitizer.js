@@ -8,7 +8,7 @@ async function sanitizeMarkdownContent(markdownContent) {
   const turndownService = new TurndownService();
 
   // 1. convert markdown to html
-  const convertedHtml = markdown.parse(markdownContent);
+  const convertedHtml = marked.parse(markdownContent);
   // console.log("markdown data", convertedHtml);
 
   // 2. sanitized html

@@ -11,6 +11,7 @@ class ProblemRepository {
                 description: problemData.description,
                 testCases: (problemData.testCases) ? problemData.testCases : [],
                 difficulty: problemData.difficulty,
+                codeStubs: problemData.codeStubs,
                 editorial: problemData.editorial
             })
             return problem;
